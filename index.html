@@ -2,60 +2,23 @@
   <head></head>
   <body>
     <h1>Test</h1>
-    <style type='text/css'>
-    	.embeddedServiceHelpButton .helpButton .uiButton {
-    		background-color: #005290;
-    		font-family: "Arial", sans-serif;
-    	}
-    	.embeddedServiceHelpButton .helpButton .uiButton:focus {
-    		outline: 1px solid #005290;
-    	}
-    </style>
-    <script type='text/javascript' src='https://service.force.com/embeddedservice/5.0/esw.min.js'></script>
     <script type='text/javascript'>
-    	var initESW = function(gslbBaseURL) {
-    		embedded_svc.settings.displayHelpButton = true; //Or false
-    		embedded_svc.settings.language = ''; //For example, enter 'en' or 'en-US'
-    		embedded_svc.settings.defaultMinimizedText = 'We are Online!';
-    		//embedded_svc.settings.disabledMinimizedText = '...'; //(Defaults to Agent Offline)
-    		//embedded_svc.settings.loadingText = ''; //(Defaults to Loading)
-    		//embedded_svc.settings.storageDomain = 'yourdomain.com'; //(Sets the domain for your deployment so that visitors can navigate subdomains during a chat session)
-    		// Settings for Chat
-    		//embedded_svc.settings.directToButtonRouting = function(prechatFormData) {
-    			// Dynamically changes the button ID based on what the visitor enters in the pre-chat form.
-    			// Returns a valid button ID.
-    		//};
-    		//embedded_svc.settings.prepopulatedPrechatFields = {}; //Sets the auto-population of pre-chat form fields
-    		//embedded_svc.settings.fallbackRouting = []; //An array of button IDs, user IDs, or userId_buttonId
-    		//embedded_svc.settings.offlineSupportMinimizedText = '...'; //(Defaults to Contact Us)
-    		embedded_svc.settings.enabledFeatures = ['LiveAgent'];
-    		embedded_svc.settings.entryFeature = 'LiveAgent';
-    		embedded_svc.init(
-    			'https://nosoftware-connect-2518--dev2.sandbox.my.salesforce.com',
-    			'https://nosoftware-connect-2518--dev2.sandbox.my.site.com/',
-    			gslbBaseURL,
-    			'00DDx0000002DJ4',
-    			'Web_Chat2',
-    			{
-    				baseLiveAgentContentURL: 'https://c.la3-c1cs-ia7.salesforceliveagent.com/content',
-    				deploymentId: '572Dx0000008OxT',
-    				buttonId: '573Dx0000008jYh',
-    				baseLiveAgentURL: 'https://d.la3-c1cs-ia7.salesforceliveagent.com/chat',
-    				eswLiveAgentDevName: 'Web_Chat',
-    				isOfflineSupportEnabled: true
-    			}
-    		);
-    	};
-    	if (!window.embedded_svc) {
-    		var s = document.createElement('script');
-    		s.setAttribute('src', 'https://nosoftware-connect-2518--dev2.sandbox.my.salesforce.com/embeddedservice/5.0/esw.min.js');
-    		s.onload = function() {
-    			initESW(null);
-    		};
-    		document.body.appendChild(s);
-    	} else {
-    		initESW('https://service.force.com');
-    	}
-    </script>
+	function initEmbeddedMessaging() {
+		try {
+			embeddedservice_bootstrap.settings.language = 'en-US'; // For example, enter 'en' or 'en-US'
+			embeddedservice_bootstrap.init(
+				'00DHr000002jMA6',
+				'Chat_Web_service',
+				'https://nosoftware-connect-2518.my.site.com/ESWCahtWebservice1717769371761',
+				{
+					scrt2URL: 'https://nosoftware-connect-2518.my.salesforce-scrt.com'
+				}
+			);
+		} catch (err) {
+			console.error('Error loading Embedded Messaging: ', err);
+		}
+	};
+</script>
+<script type='text/javascript' src='https://nosoftware-connect-2518.my.site.com/ESWCahtWebservice1717769371761/assets/js/bootstrap.min.js' onload='initEmbeddedMessaging()'></script>
   </body>
 </html>
